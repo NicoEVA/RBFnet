@@ -197,8 +197,8 @@ class RBFnet:
         # print("Update Computed.")
 
         self.outputWeights = self.outputWeights - self.actualupdate[:self.neurons].reshape(-1, 1)
-        # self.inputWeights = self.inputWeights - np.array((self.actualupdate[self.neurons:2*self.neurons],
-        #                                                   self.actualupdate[2*self.neurons:3*self.neurons])).T
+        self.inputWeights = self.inputWeights - np.array((self.actualupdate[self.neurons:2*self.neurons],
+                                                          self.actualupdate[2*self.neurons:3*self.neurons])).T
 
         self.computeActivationAndOutput(notappend)
 
@@ -234,7 +234,7 @@ while test_net.sum_sq_errors > 1e-6:
         print(i_count)
         print(test_net.learningRate, test_net.sum_sq_errors)
 
-    if i_count == 2000 or test_net.learningRate < 1e-40:
+    if i_count == 25 or test_net.learningRate < 1e-40:
         break
     i_count += 1
 
